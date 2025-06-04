@@ -3,34 +3,37 @@
 #include "libthings.h"
 
 typedef struct FIFO {
-    int*elements;
-    int capacity, head, tail, counter;
+    char**elements;
+    int head, tail, counter, capacity, priority;
 } queue_t;
 
 queue_t* creation(){
     queue_t* filha = (queue_t*) malloc(sizeof(queue_t));
-    filha->elements = (int*) malloc(sizeof(int)*INITIAL);
+    filha->elements = (char**) malloc(sizeof(char*)*1);
     filha->head=0;
+    filha->priority=0;
     filha->tail=0;
-    filha->capacity=INITIAL;
+    filha->capacity=1;
     filha->counter=0;
     return filha;
 }
 
-void add(int num, queue_t * fila) {
-    if (fila->counter==fila->capacity) {
-        printf("ERROR [OVERFLOW]");
-        exit(EXIT_FAILURE);}
-    fila->elements[fila->tail]=num;
-    fila->tail++%fila->capacity;
+//probably need to use malloc for pointers?
+void add(char* word, queue_t * fila) {
+    if (fila->counter >= fila->capacity) {
+        fila->capacity *= 2;
+        fila->elements = (char**) realloc(fila->elements, sizeof(char*)*fila->capacity);
+    }
+    fila->elements[fila->tail] = word;
+    fila->tail = (fila->tail+1)%fila->capacity;
     fila->counter++;
 }
 
-int removes(queue_t* fila) {
+char* removes(queue_t* fila) {
     if (fila->counter == 0){printf("ERROR [UNDERFLOW]");
         exit(EXIT_FAILURE);}
-    int valor = fila->elements[fila->head];
-    fila->head++%fila->capacity;
+    char* valor = fila->elements[fila->head];
+    fila->head = (fila->head+1)%fila->capacity;
     fila->counter--;
     return valor;
 }
