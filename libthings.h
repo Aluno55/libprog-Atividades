@@ -15,11 +15,10 @@ char *pop(pill_t* pinha);
 void destruct(pill_t* pinha);
 
 typedef struct lista list_t;
-list_t* create(bool order);
-int ordoSearch(list_t* L, int val);
-int search(list_t* L, int val);
-void addlist(list_t* L, int val);
-int remover(list_t* L, int val);
+list_t* create();
+int search(list_t* L, const char* val);
+void addlist(list_t* L, char* val);
+char* remover(list_t* L, char* val);
 void destruction(list_t* lia);
 
 #endif

@@ -3,15 +3,17 @@
 #include "libthings.h"
 
 typedef struct FIFO {
-    char**elements;
-    int head, tail, counter, capacity, priority;
+    struct {
+        char* wordle;
+        int priority;
+    } *elements;
+    int head, tail, counter, capacity;
 } queue_t;
 
 queue_t* creation(){
     queue_t* filha = (queue_t*) malloc(sizeof(queue_t));
-    filha->elements = (char**) malloc(sizeof(char*)*1);
+    filha->elements = malloc(sizeof(*filha->elements) * 1);
     filha->head=0;
-    filha->priority=0;
     filha->tail=0;
     filha->capacity=1;
     filha->counter=0;
@@ -19,12 +21,13 @@ queue_t* creation(){
 }
 
 //probably need to use malloc for pointers?
-void add(char* word, queue_t * fila) {
+void add(char* word, int hier, queue_t * fila) {
     if (fila->counter >= fila->capacity) {
         fila->capacity *= 2;
-        fila->elements = (char**) realloc(fila->elements, sizeof(char*)*fila->capacity);
+        fila->elements = realloc(fila->elements, sizeof(*fila->elements) * fila->capacity);
     }
-    fila->elements[fila->tail] = word;
+    fila->elements[fila->tail].wordle = word;
+    fila->elements[fila->tail].priority = hier;
     fila->tail = (fila->tail+1)%fila->capacity;
     fila->counter++;
 }
@@ -32,7 +35,7 @@ void add(char* word, queue_t * fila) {
 char* removes(queue_t* fila, pill_t* pinha, char* action) {
     if (fila->counter == 0){printf("ERROR [UNDERFLOW]");
         exit(EXIT_FAILURE);}
-    char* valor = fila->elements[fila->head];
+    char* valor = fila->elements[fila->head].wordle;
     fila->head = (fila->head+1)%fila->capacity;
     fila->counter--;
     push(pinha, action);
