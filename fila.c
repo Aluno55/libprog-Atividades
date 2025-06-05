@@ -29,12 +29,13 @@ void add(char* word, queue_t * fila) {
     fila->counter++;
 }
 
-char* removes(queue_t* fila) {
+char* removes(queue_t* fila, pill_t* pinha, char* action) {
     if (fila->counter == 0){printf("ERROR [UNDERFLOW]");
         exit(EXIT_FAILURE);}
     char* valor = fila->elements[fila->head];
     fila->head = (fila->head+1)%fila->capacity;
     fila->counter--;
+    push(pinha, action);
     return valor;
 }
 
