@@ -26,10 +26,12 @@ char *pop(pill_t* pinha) {
     if (pinha->top < 0) {printf("empty");exit(EXIT_FAILURE);}
     char* value = pinha->elemental[pinha->top];
     pinha->top--;
-
-        return value;}
+    return value;
+}
 
 void destruct(pill_t* pinha){
     free(pinha->elemental);
     free(pinha);
 }
+
+int vazio(pill_t* p) {return p->top == -1;}
