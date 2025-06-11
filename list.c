@@ -44,6 +44,13 @@ char* remover(list_t* L, const char* val) {
     L->tam--;
     return removed;}
 
+int listless(list_t* L){return L->tam == 0}
+
+void history(list_t* l){
+    for (int i = 0; i < l->tam; i++){
+        printf("%s\n", l->elementar[i];)
+    }}
+
 void destruction(list_t* lia){
     free(lia->elementar);
     free(lia);
