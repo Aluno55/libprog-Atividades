@@ -16,7 +16,7 @@ list_t* create(){
     return lisa;
 }
 
-int search(list_t* L, const char* val) {
+int search(list_t* L, char* val) {
     for (int i = 0; i < L->tam; i++) {
         if (strcmp(L->elementar[i], val) == 0) {
             return i;
@@ -33,7 +33,7 @@ void addlist(list_t* L, char* val) {
     L->tam++;
 }
 
-char* remover(list_t* L, const char* val) {
+char* remover(list_t* L, char* val) {
     int position = search(L, val);
     if (position == -1) return NULL;
 
@@ -48,7 +48,7 @@ int listless(list_t* L){return L->tam == 0}
 
 void history(list_t* l){
     for (int i = 0; i < l->tam; i++){
-        printf("%s\n", l->elementar[i];)
+        printf("%s\n", l->elementar[i]);
     }}
 
 void destruction(list_t* lia){

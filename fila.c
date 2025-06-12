@@ -32,13 +32,12 @@ void add(char* word, int hier, queue_t * fila) {
     fila->counter++;
 }
 
-char* removes(queue_t* fila, pill_t* pinha, char* action) {
+char* removes(queue_t* fila) {
     if (fila->counter == 0){printf("ERROR [UNDERFLOW]");
         exit(EXIT_FAILURE);}
     char* valor = fila->elements[fila->head].wordle;
     fila->head = (fila->head+1)%fila->capacity;
     fila->counter--;
-    push(pinha, action);
     return valor;
 }
 
@@ -46,3 +45,5 @@ void destroy(queue_t* fia){
     free(fia->elements);
     free(fia);
 }
+
+int vacuo(queue_t* f){return f->head == 0}
