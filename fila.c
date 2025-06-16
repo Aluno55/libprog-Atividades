@@ -4,7 +4,7 @@
 
 typedef struct FIFO {
     struct {
-        char* wordle;
+        char wordle[100], desc[280];
         int priority;
     } *elements;
     int head, tail, counter, capacity;
@@ -20,23 +20,22 @@ queue_t* creation(){
     return filha;
 }
 
-//probably need to use malloc for pointers?
-void add(char* word, int hier, queue_t * fila) {
+void add(struct call c, queue_t * fila) {
     if (fila->counter >= fila->capacity) {
         fila->capacity *= 2;
         fila->elements = realloc(fila->elements, sizeof(*fila->elements) * fila->capacity);
     }
-    fila->elements[fila->tail].wordle = word;
-    fila->elements[fila->tail].priority = hier;
+    strcpy(fila->elements[fila->tail].wordle, c.r.name);
+    strcpy(fila->elements[fila->tail].desc, c.r.info);
+    fila->elements[fila->tail].priority = c.priority;
     fila->tail = (fila->tail+1)%fila->capacity;
     fila->counter++;
 }
 
 char* removes(queue_t* fila) {
-    if (fila->counter == 0){printf("ERROR [UNDERFLOW]");
-        exit(EXIT_FAILURE);}
-    char* valor = fila->elements[fila->head].wordle;
-    fila->head = (fila->head+1)%fila->capacity;
+    if (fila->counter == 0){printf("ERROR [UNDERFLOW]");exit(EXIT_FAILURE);}
+    char* valor = strdup(fila->elements[fila->head].wordle);
+    fila->head = (fila->head + 1) % fila->capacity;
     fila->counter--;
     return valor;
 }
@@ -46,4 +45,4 @@ void destroy(queue_t* fia){
     free(fia);
 }
 
-int vacuo(queue_t* f){return f->head == 0}
+int vacuo(queue_t* f){return f->counter == 0}

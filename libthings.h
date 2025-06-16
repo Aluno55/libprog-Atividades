@@ -4,7 +4,7 @@
 
 typedef struct FIFO queue_t;
 queue_t* creation();
-void add(char* word, int hier, queue_t * fila);
+void add(struct call c, queue_t * fila);
 char* removes(queue_t* fila);
 void destroy(queue_t* fia);
 int vacuo(queue_t* f);
