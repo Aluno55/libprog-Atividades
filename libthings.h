@@ -1,7 +1,7 @@
 #ifndef LIBPRG_LIBPRG_H
 #define LIBPRG_LIBPRG_H
 
-struct call {
+typedef struct call {
     char name[100];
     char info[280];
     int priority;
