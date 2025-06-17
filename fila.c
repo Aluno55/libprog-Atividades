@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "libthings.h"
 
 typedef struct FIFO {
@@ -25,8 +26,8 @@ void add(struct call c, queue_t * fila) {
         fila->capacity *= 2;
         fila->elements = realloc(fila->elements, sizeof(*fila->elements) * fila->capacity);
     }
-    strcpy(fila->elements[fila->tail].wordle, c.r.name);
-    strcpy(fila->elements[fila->tail].desc, c.r.info);
+    strcpy(fila->elements[fila->tail].wordle, c.name);
+    strcpy(fila->elements[fila->tail].desc, c.info);
     fila->elements[fila->tail].priority = c.priority;
     fila->tail = (fila->tail+1)%fila->capacity;
     fila->counter++;
@@ -45,4 +46,4 @@ void destroy(queue_t* fia){
     free(fia);
 }
 
-int vacuo(queue_t* f){return f->counter == 0}
+int vacuo(queue_t* f){return f->counter == 0;}

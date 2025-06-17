@@ -1,4 +1,4 @@
-#include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "libthings.h"
@@ -44,12 +44,14 @@ char* remover(list_t* L, char* val) {
     L->tam--;
     return removed;}
 
-int listless(list_t* L){return L->tam == 0}
+int listless(list_t* L){return L->tam == 0;}
 
 void history(list_t* l){
     for (int i = 0; i < l->tam; i++){
         printf("%s\n", l->elementar[i]);
     }}
+
+int tama(list_t* l){return l->tam;}
 
 void destruction(list_t* lia){
     free(lia->elementar);

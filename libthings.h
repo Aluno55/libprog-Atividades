@@ -1,6 +1,11 @@
 #ifndef LIBPRG_LIBPRG_H
 #define LIBPRG_LIBPRG_H
-#include <stdbool.h>
+
+struct call {
+    char name[100];
+    char info[280];
+    int priority;
+};
 
 typedef struct FIFO queue_t;
 queue_t* creation();
@@ -23,6 +28,7 @@ void addlist(list_t* L, char* val);
 char* remover(list_t* L, char* val);
 void destruction(list_t* lia);
 int listless(list_t* L);
+int tama(list_t* l);
 void history(list_t* l);
 
 #endif
