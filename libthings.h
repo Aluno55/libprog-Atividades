@@ -23,9 +23,7 @@ int vazio(pill_t* p);
 
 typedef struct lista list_t;
 list_t* create();
-int search(list_t* L, char* val);
 void addlist(list_t* L, char* val);
-char* remover(list_t* L, char* val);
 void destruction(list_t* lia);
 int listless(list_t* L);
 int tama(list_t* l);
