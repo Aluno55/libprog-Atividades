@@ -34,7 +34,7 @@ void add(struct call c, queue_t * fila) {
 }
 
 char* removes(queue_t* fila) {
-    if (fila->counter == 0){printf("ERROR [UNDERFLOW]");exit(EXIT_FAILURE);}
+    if (fila->counter == 0){printf("ERROR [UNDERFLOW]");return NULL;}
     char* valor = strdup(fila->elements[fila->head].wordle);
     fila->head = (fila->head + 1) % fila->capacity;
     fila->counter--;
