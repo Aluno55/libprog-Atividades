@@ -23,7 +23,7 @@ void push(pill_t* pinha, char* value) {
 }
 
 char *pop(pill_t* pinha) {
-    if (pinha->top < 0) {printf("empty");exit(EXIT_FAILURE);}
+    if (pinha->top < 0) {printf("empty");return NULL;}
     char* value = pinha->elemental[pinha->top];
     pinha->top--;
     return value;
