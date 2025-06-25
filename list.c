@@ -29,7 +29,7 @@ void addlist(list_t* L, char* val) {
         L->cap *= 2;
         L->elementar = realloc(L->elementar, sizeof(char*) * L->cap);
     }
-    L->elementar[L->tam] = val;
+    L->elementar[L->tam] = strdup(val);
     L->tam++;
 }
 
@@ -54,6 +54,7 @@ void history(list_t* l){
 int tama(list_t* l){return l->tam;}
 
 void destruction(list_t* lia){
+    for (int i = 0; i < lia->tam; i++) {free(lia->elementar[i]);}
     free(lia->elementar);
     free(lia);
 }
