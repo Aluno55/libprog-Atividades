@@ -4,13 +4,13 @@
 typedef struct call {
     char name[100];
     char info[280];
-    int priority;
+    char priority[50];
 };
 
 typedef struct FIFO queue_t;
 queue_t* creation();
 void add(struct call c, queue_t * fila);
-char* removes(queue_t* fila);
+char* removes(queue_t* fila, char* val); //val = priority
 void destroy(queue_t* fia);
 int vacuo(queue_t* f);
 
@@ -25,7 +25,6 @@ typedef struct lista list_t;
 list_t* create();
 void addlist(list_t* L, char* val);
 void destruction(list_t* lia);
-int listless(list_t* L);
 int tama(list_t* l);
 void history(list_t* l);
 
