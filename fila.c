@@ -18,32 +18,27 @@ queue_t* creation(){
     filha->tail=0;
     filha->capacity=1;
     filha->counter=0;
-    return filha;
-}
+    return filha;}
 
 void add(struct call c, queue_t * fila) {
     if (fila->counter >= fila->capacity) {
         fila->capacity *= 2;
-        fila->elements = realloc(fila->elements, sizeof(*fila->elements) * fila->capacity);
-    }
+        fila->elements = realloc(fila->elements, sizeof(*fila->elements) * fila->capacity);}
     strcpy(fila->elements[fila->tail].wordle, c.name);
     strcpy(fila->elements[fila->tail].desc, c.info);
     fila->elements[fila->tail].priority = c.priority;
     fila->tail = (fila->tail+1)%fila->capacity;
-    fila->counter++;
-}
+    fila->counter++;}
 
-char* removes(queue_t* fila) {
+char* removes(queue_t* fila, char* val) {
     if (fila->counter == 0){printf("ERROR [UNDERFLOW]");return NULL;}
+
+    //how the hell i use char? should i have another function to change words to ints?
     char* valor = strdup(fila->elements[fila->head].wordle);
     fila->head = (fila->head + 1) % fila->capacity;
     fila->counter--;
-    return valor;
-}
+    return valor;}
 
-void destroy(queue_t* fia){
-    free(fia->elements);
-    free(fia);
-}
+void destroy(queue_t* fia){free(fia->elements);free(fia);}
 
 int vacuo(queue_t* f){return f->counter == 0;}
