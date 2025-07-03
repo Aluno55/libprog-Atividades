@@ -4,13 +4,13 @@
 typedef struct call {
     char name[100];
     char info[280];
-    char priority[50];
+    int priority;
 };
 
 typedef struct FIFO queue_t;
 queue_t* creation();
 void add(struct call c, queue_t * fila);
-char* removes(queue_t* fila, char* val); //val = priority
+char* removes(queue_t* fila, int val); //val = priority
 void destroy(queue_t* fia);
 int vacuo(queue_t* f);
 

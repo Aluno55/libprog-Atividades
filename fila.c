@@ -30,7 +30,7 @@ void add(struct call c, queue_t * fila) {
     fila->tail = (fila->tail+1)%fila->capacity;
     fila->counter++;}
 
-char* removes(queue_t* fila, char* val) {
+char* removes(queue_t* fila, int val) {
     if (fila->counter == 0){printf("ERROR [UNDERFLOW]");return NULL;}
 
     //how the hell i use char? should i have another function to change words to ints?
