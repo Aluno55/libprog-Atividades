@@ -30,9 +30,9 @@ void add(struct call c, queue_t * fila) {
     fila->tail = (fila->tail+1)%fila->capacity;
     fila->counter++;}
 
-char* removes(queue_t* fila, int val) {
+//na verdade precisa de prioridade nisso?
+char* removes(queue_t* fila) {
     if (fila->counter == 0){printf("ERROR [UNDERFLOW]");return NULL;}
-    // fazer prioridade funcionar
     char* valor = strdup(fila->elements[fila->head].wordle);
     fila->head = (fila->head + 1) % fila->capacity;
     fila->counter--;
@@ -40,10 +40,8 @@ char* removes(queue_t* fila, int val) {
 
 void* display(queue_t* f) {int coisa = f->head;
     for (int i = 0; i < f->counter; i++) {
-
         printf("Nome: %s\n Nivel de Prioridade: %d", f->elements[coisa].wordle, f->elements[coisa].priority);
         printf("Descrição: %s\n", f->elements[coisa].desc);
-
         coisa=(coisa + 1) % f->capacity;}}
 
 void destroy(queue_t* fia){free(fia->elements);free(fia);}
