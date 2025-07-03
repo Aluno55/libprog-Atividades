@@ -40,7 +40,7 @@ char* removes(queue_t* fila) {
 
 void* display(queue_t* f) {int coisa = f->head;
     for (int i = 0; i < f->counter; i++) {
-        printf("Nome: %s\n Nivel de Prioridade: %d", f->elements[coisa].wordle, f->elements[coisa].priority);
+        printf("Nome: %s\nNivel de Prioridade: %d\n", f->elements[coisa].wordle, f->elements[coisa].priority);
         printf("Descrição: %s\n", f->elements[coisa].desc);
         coisa=(coisa + 1) % f->capacity;}}
 
