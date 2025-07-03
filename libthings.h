@@ -13,6 +13,7 @@ void add(struct call c, queue_t * fila);
 char* removes(queue_t* fila, int val); //val = priority
 void destroy(queue_t* fia);
 int vacuo(queue_t* f);
+void* display(queue_t* f);
 
 typedef struct LIFO pill_t;
 pill_t* creator();

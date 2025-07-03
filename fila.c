@@ -32,12 +32,19 @@ void add(struct call c, queue_t * fila) {
 
 char* removes(queue_t* fila, int val) {
     if (fila->counter == 0){printf("ERROR [UNDERFLOW]");return NULL;}
-
-    //how the hell i use char? should i have another function to change words to ints?
+    // fazer prioridade funcionar
     char* valor = strdup(fila->elements[fila->head].wordle);
     fila->head = (fila->head + 1) % fila->capacity;
     fila->counter--;
     return valor;}
+
+void* display(queue_t* f) {int coisa = f->head;
+    for (int i = 0; i < f->counter; i++) {
+
+        printf("Nome: %s\n Nivel de Prioridade: %d", f->elements[coisa].wordle, f->elements[coisa].priority);
+        printf("Descrição: %s\n", f->elements[coisa].desc);
+
+        coisa=(coisa + 1) % f->capacity;}}
 
 void destroy(queue_t* fia){free(fia->elements);free(fia);}
 

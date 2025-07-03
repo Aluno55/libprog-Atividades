@@ -19,19 +19,16 @@ void push(pill_t* pinha, char* value) {
         pinha->capacity *= 2;
         pinha->elemental = (char**) realloc(pinha->elemental, sizeof(char*)*pinha->capacity);}
     pinha->top++;
-    pinha->elemental[pinha->top] = value;
-}
+    pinha->elemental[pinha->top] = value;}
 
 char *pop(pill_t* pinha) {
     if (pinha->top < 0) {printf("empty");return NULL;}
     char* value = pinha->elemental[pinha->top];
     pinha->top--;
-    return value;
-}
+    return value;}
 
 void destruct(pill_t* pinha){
     free(pinha->elemental);
-    free(pinha);
-}
+    free(pinha);}
 
 int vazio(pill_t* p) {return p->top == -1;}
