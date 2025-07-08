@@ -22,23 +22,35 @@ queue_t* creation(){
 
 void add(struct call c, queue_t * fila) {
     if (fila->counter >= fila->capacity) {
+        int cap = fila->capacity, new = cap*2;
         fila->capacity *= 2;
-        fila->elements = realloc(fila->elements, sizeof(*fila->elements) * fila->capacity);}
+        typeof(*fila->elements)* novo = malloc(sizeof(*fila->elements) * new);
+        for (int i = 0; i < fila->counter; ++i) {
+            int troço = (i+ fila->head) % cap;
+            novo[i]= fila->elements[troço];}
+        free(fila->elements);fila->elements=novo;
+        fila->capacity= new; fila->head=0; fila->tail=fila->counter;}
+
     strcpy(fila->elements[fila->tail].wordle, c.name);
     strcpy(fila->elements[fila->tail].desc, c.info);
     fila->elements[fila->tail].priority = c.priority;
     fila->tail = (fila->tail+1)%fila->capacity;
     fila->counter++;}
 
-char* removes(queue_t* fila) {
-    if (fila->counter == 0){printf("ERROR [UNDERFLOW]");return NULL;}
-    char* valor = strdup(fila->elements[fila->head].wordle);
+char *removes(queue_t *fila) {
+    if (fila->counter == 0) {
+        printf("ERROR [UNDERFLOW]");
+        return NULL;
+    }
+    char *valor = strdup(fila->elements[fila->head].wordle);
     fila->head = (fila->head + 1) % fila->capacity;
     fila->counter--;
-    return valor;}
+    return valor;
+}
 
-void* display(queue_t* f) {int coisa = f->head;
-    for (int i = 0; i < f->counter-1; i++) {
+void display(queue_t *f) {
+    int coisa = f->head;
+    for (int i = 0; i < f->counter; i++) {
         printf("Nome: %s\nNivel de Prioridade: %d\n", f->elements[coisa].wordle, f->elements[coisa].priority);
         printf("Descrição: %s\n", f->elements[coisa].desc);
         coisa=(coisa + 1) % f->capacity;}}
